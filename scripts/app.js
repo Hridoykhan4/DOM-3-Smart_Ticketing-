@@ -1,11 +1,21 @@
 const busSeat = document.getElementsByClassName("bus-seat");
 
+
+
 let count = 0;
 for (const seat of busSeat) {
   seat.addEventListener("click", function (event) {
     if (document.getElementById("total-seats").innerText === "36") {
       alert("You Can Not Reserve More Than 4 Seats");
       return;
+    }
+
+    
+
+
+    const couponButton = document.getElementById('couponBtn');
+    if(count + 1 >= 4){
+        couponButton.removeAttribute('disabled', true);
     }
 
     event.target.setAttribute("disabled", true);
@@ -55,22 +65,45 @@ for (const seat of busSeat) {
     setTotalPrice("total-Price");
     grandTotal("");
 
+   
+
+
     // console.log(selectedBookedSeat.node)
     /* 
         if(event.target && count > ){
             const NextBtn = document.getElementById('nextBtn');
             NextBtn.removeAttribute('disabled')
         } */
+
+           
   });
 }
 const phoneNumber = document.getElementById("phoneNumber");
 phoneNumber.addEventListener("keyup", function (e) {
-  const target = e.target.value;
+    const target = e.target.value;
+
   if (count && target.length == 11) {
     const NextBtn = document.getElementById("nextBtn");
     NextBtn.removeAttribute("disabled");
-  } else {
+   
+
+} 
+
+
+else {
     const NextBtn = document.getElementById("nextBtn");
     NextBtn.setAttribute("disabled", true);
   }
+
+  
+});
+
+// const busSeat = document.getElementsByClassName("bus-seat");
+
+const NextBtn = document.getElementById("nextBtn");
+NextBtn.addEventListener("click", function () {
+    phoneNumber.value = '';
+    
+    NextBtn.setAttribute("disabled", true);
+
 });
