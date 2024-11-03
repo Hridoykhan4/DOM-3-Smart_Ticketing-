@@ -13,86 +13,70 @@ function grandTotal() {
   document.getElementById("grand-Price").innerText = totalPrice;
 }
 
+function applyButton() {
+  const couponInput = document.getElementById("couponInput").value;
 
-function applyButton(){
+  if (couponInput === "NEW15") {
+    const discountPrice = document.getElementById("discount-price");
+    const div = document.createElement("div");
+    div.classList.add("flex");
+    div.classList.add("justify-between");
 
-   const couponInput = document.getElementById('couponInput').value;
+    const p1 = document.createElement("p");
+    p1.innerText = "Discount Price";
+    div.appendChild(p1);
+    discountPrice.appendChild(div);
 
-    if(couponInput === 'NEW15'){
-            const discountPrice = document.getElementById('discount-price');
-            const div = document.createElement('div');
-            div.classList.add('flex');
-            div.classList.add('justify-between');
+    discountPrice.appendChild(div).style.fontSize = "1.1rem";
+    discountPrice.appendChild(div).style.fontWeight = "bold";
 
-            const p1 = document.createElement('p');
-            p1.innerText = 'Discount Price'
-            div.appendChild(p1);
-            discountPrice.appendChild(div);
+    const totalPrice = getInputByNumber("total-Price");
 
+    const onlyDiscount = totalPrice * 0.15;
 
+    const discountTotal = totalPrice - onlyDiscount;
 
-            discountPrice.appendChild(div).style.fontSize = '1.1rem';
-            discountPrice.appendChild(div).style.fontWeight = 'bold';
-            
-    
-            const totalPrice = getInputByNumber("total-Price");
+    const grandPrice = document.getElementById("grand-Price");
 
-            const onlyDiscount = totalPrice * 0.15;
+    const p2 = document.createElement("p");
+    p2.innerText = "BDT " + onlyDiscount;
+    div.appendChild(p2);
 
-            const discountTotal = totalPrice - onlyDiscount;
+    grandPrice.innerText = discountTotal;
+    const hawa = document.getElementById("hawa");
+    hawa.style.display = "none";
+  } else if (couponInput === "Couple20") {
+    const discountPrice = document.getElementById("discount-price");
+    const div = document.createElement("div");
+    div.classList.add("flex");
+    div.classList.add("justify-between");
 
-            const grandPrice = document.getElementById("grand-Price")
-            
+    const p1 = document.createElement("p");
+    p1.innerText = "Discount Price";
+    div.appendChild(p1);
+    discountPrice.appendChild(div);
 
-            const p2 = document.createElement('p');
-            p2.innerText =  'BDT ' + onlyDiscount;
-            div.appendChild(p2);
-            
+    discountPrice.appendChild(div).style.fontSize = "1.1rem";
+    discountPrice.appendChild(div).style.fontWeight = "bold";
 
-            grandPrice.innerText = discountTotal;
+    const totalPrice = getInputByNumber("total-Price");
 
-          
-    }
+    const onlyDiscount = totalPrice * 0.2;
 
-    else if(couponInput === 'Couple20'){
-        const discountPrice = document.getElementById('discount-price');
-            const div = document.createElement('div');
-            div.classList.add('flex');
-            div.classList.add('justify-between');
+    const discountTotal = totalPrice - onlyDiscount;
 
-            const p1 = document.createElement('p');
-            p1.innerText = 'Discount Price'
-            div.appendChild(p1);
-            discountPrice.appendChild(div);
+    const grandPrice = document.getElementById("grand-Price");
 
+    const p2 = document.createElement("p");
+    p2.innerText = "BDT " + onlyDiscount;
+    div.appendChild(p2);
 
-
-            discountPrice.appendChild(div).style.fontSize = '1.1rem';
-            discountPrice.appendChild(div).style.fontWeight = 'bold';
-            
-    
-            const totalPrice = getInputByNumber("total-Price");
-
-            const onlyDiscount = totalPrice * 0.2;
-
-            const discountTotal = totalPrice - onlyDiscount;
-
-            const grandPrice = document.getElementById("grand-Price")
-            
-
-            const p2 = document.createElement('p');
-            p2.innerText =  'BDT ' + onlyDiscount;
-            div.appendChild(p2);
-            
-
-            grandPrice.innerText = discountTotal;
-            document.getElementById('couponInput').value = ''
-              const hawa = document.getElementById('hawa');
-            hawa.style.display= 'none'
-
-    }
-    else{
-        alert('Invalid Coupon Code');
-        return;
-    }
+    grandPrice.innerText = discountTotal;
+    document.getElementById("couponInput").value = "";
+    const hawa = document.getElementById("hawa");
+    hawa.style.display = "none";
+  } else {
+    alert("Invalid Coupon Code");
+    return;
+  }
 }
