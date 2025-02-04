@@ -55,17 +55,8 @@ for (const seat of busSeat) {
 
     count++;
 
-    event.target.setAttribute("disabled", true);
-
     setTotalPrice("total-Price");
     grandTotal("");
-
-    // console.log(selectedBookedSeat.node)
-    /* 
-        if(event.target && count > ){
-            const NextBtn = document.getElementById('nextBtn');
-            NextBtn.removeAttribute('disabled')
-        } */
   });
 }
 const phoneNumber = document.getElementById("phoneNumber");
