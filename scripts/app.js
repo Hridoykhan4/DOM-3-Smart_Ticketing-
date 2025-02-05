@@ -79,7 +79,7 @@ NextBtn.addEventListener("click", function () {
   phoneNumber.value = "";
 
   NextBtn.setAttribute("disabled", true);
-
+  my_modal_1.showModal()
   const continueBtn = document.getElementById("continueBtn");
   continueBtn.addEventListener("click", function () {
     location.reload();
