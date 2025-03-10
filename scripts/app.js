@@ -1,19 +1,19 @@
 const busSeat = document.getElementsByClassName("bus-seat");
-
+let selectedSeatOnly = [];
 let count = 0;
 for (const seat of busSeat) {
   seat.addEventListener("click", function (event) {
-    if (document.getElementById("total-seats").innerText === "36") {
-      alert("You Can Not Reserve More Than 4 Seats");
-      return;
+    if (selectedSeatOnly.includes(event.target.innerText)) {
+      return alert("Can Not Select a seat twice");
     }
 
-    const couponButton = document.getElementById("couponBtn");
-    if (count + 1 >= 4) {
-      couponButton.removeAttribute("disabled", true);
+    selectedSeatOnly.push(event.target.innerText);
+    if (selectedSeatOnly.length > 3) {
+      document.getElementById("couponBtn").removeAttribute("disabled");
     }
-
-    event.target.setAttribute("disabled", true);
+    if (selectedSeatOnly.length > 4) {
+      return alert("Can not add more than 4 seats");
+    }
 
     event.target.style.backgroundColor = "lime";
     event.target.classList.add("text-white");
@@ -59,9 +59,15 @@ for (const seat of busSeat) {
     grandTotal("");
   });
 }
+const passerName = document.getElementById("userName");
+const emailId = document.getElementById("emailId");
 const phoneNumber = document.getElementById("phoneNumber");
 phoneNumber.addEventListener("keyup", function (e) {
   const target = e.target.value;
+
+  if (!passerName.value) {
+    alert("Please provide your Name first");
+  }
 
   if (count && target.length == 11) {
     const NextBtn = document.getElementById("nextBtn");
@@ -72,16 +78,15 @@ phoneNumber.addEventListener("keyup", function (e) {
   }
 });
 
-// const busSeat = document.getElementsByClassName("bus-seat");
-
 const NextBtn = document.getElementById("nextBtn");
 NextBtn.addEventListener("click", function () {
   phoneNumber.value = "";
 
   NextBtn.setAttribute("disabled", true);
-  my_modal_1.showModal()
-  const continueBtn = document.getElementById("continueBtn");
-  continueBtn.addEventListener("click", function () {
-    location.reload();
-  });
+  my_modal_1.showModal();
+});
+
+const continueBtn = document.getElementById("continueBtn");
+continueBtn.addEventListener("click", function () {
+  location.reload();
 });
